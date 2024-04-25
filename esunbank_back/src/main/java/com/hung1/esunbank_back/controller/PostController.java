@@ -2,11 +2,10 @@ package com.hung1.esunbank_back.controller;
 
 import com.hung1.esunbank_back.model.Post;
 import com.hung1.esunbank_back.model.User;
+import com.hung1.esunbank_back.service.PostService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import com.hung1.esunbank_back.service.PostService;
 
 import java.util.List;
 
@@ -26,14 +25,9 @@ public class PostController {
     public String newPost(@RequestParam("content") String content, HttpSession httpsession) {
         User loginUser = (User) httpsession.getAttribute("loginUser");
         if (loginUser != null) {
-            Post p1 = new Post();
-            p1.setUser(loginUser);
-            p1.setContent(content);
-            mService.insert(p1);
-
+            mService.insert(content, loginUser);
             return "Y";
-        }
-        ;
+        };
         return "N";//尚未登入
 
     }

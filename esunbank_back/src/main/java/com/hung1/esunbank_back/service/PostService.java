@@ -3,14 +3,12 @@ package com.hung1.esunbank_back.service;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-
 import com.hung1.esunbank_back.model.Post;
 import com.hung1.esunbank_back.model.User;
+import com.hung1.esunbank_back.model.PostRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.hung1.esunbank_back.model.PostRepository;
 
 @Service
 public class PostService {
@@ -18,8 +16,12 @@ public class PostService {
     @Autowired
     private PostRepository postRepo;
 
-    public void insert(Post post) {
-        postRepo.save(post);
+    @Transactional
+    public void insert(String content, User loginUser) {
+        Post p1 = new Post();
+        p1.setUser(loginUser);
+        p1.setContent(content);
+        postRepo.save(p1);
     }
 
     public Post findById(Integer id) {
