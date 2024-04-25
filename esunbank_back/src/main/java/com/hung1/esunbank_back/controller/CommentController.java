@@ -17,28 +17,15 @@ public class CommentController {
     @Autowired
     private CommentService mService;
 
-    @Autowired
-    private PostService pService;
 
     @PostMapping("/comment/add")
     public String addComment(@RequestParam("content") String content,
                              @RequestParam("postid") Integer postid,
                              HttpSession httpsession) {
-        User loginUser = (User) httpsession.getAttribute("loginUser");
-        if (loginUser != null) {
-            Post p1 = pService.findById(postid);
-            Comment c1 = new Comment();
-            c1.setUser(loginUser);
-            c1.setContent(content);
-            c1.setPost(p1);
-            mService.insert(c1);
-
-            return "Y";
-        }
-        ;
-        return "N";//尚未登入
-
+        return mService.insert(content, postid, httpsession);
     }
+
+    ;
 
 
 }
