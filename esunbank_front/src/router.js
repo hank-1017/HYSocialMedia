@@ -11,27 +11,27 @@ const routes = [
 
     {
         path: '/',
-        component: Navbar ,
+        component: Navbar,
         children: [
             {
                 path: '/',
                 component: HomePage,
             },
             {
-              path: 'register',
-              component: Register,
+                path: 'register',
+                component: Register,
             },
             {
-              path: 'login',
-              component: LoginPage,
+                path: 'login',
+                component: LoginPage,
             },
             {
-              path: 'post/add',
-              component: AddPostPage,
+                path: 'post/add',
+                component: AddPostPage,
             },
             {
-              path: 'post/show',
-              component: ShowPostPage,
+                path: 'post/show',
+                component: ShowPostPage,
             },
 
         ]

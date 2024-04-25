@@ -2,9 +2,11 @@
 
   <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
+
       <router-link to="/">
         <a class="navbar-brand">Simple-Social-Network</a>
       </router-link>
+
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
 

@@ -44,9 +44,11 @@
 <script setup>
 import axios from "axios";
 import {onMounted, ref} from "vue";
+import {useRouter} from 'vue-router';
 import {format} from 'date-fns'
 import {zhTW} from 'date-fns/locale'
 
+const router = useRouter();
 const posts = ref([]);
 const comment = ref('');
 const URL = import.meta.env.VITE_API_JAVAURL;
@@ -59,7 +61,7 @@ onMounted(() => {
 const getPosts = async () => {
   try {
     const response = await axios.get(`${URL}post/show`, {withCredentials: true});
-    console.log("posts: " + response.data);
+    // console.log("posts: " + response.data);
     posts.value = response.data.map(post => ({
       ...post,
       createdTime: format(new Date(post.createdTime), "a hh 時 mm 分 ss 秒 ## yyyy 年 MM 月 dd 日 EEEE", {locale: zhTW}),
@@ -117,6 +119,7 @@ const sendComment = async (postID) => {
       await getPosts();
     } else {
       alert("請先登入")
+      await router.push('/login');
     }
   } catch (error) {
     console.error('AJAX error:', error);

@@ -52,7 +52,7 @@ const URL = import.meta.env.VITE_API_JAVAURL;
 
 const submitForm = async () => {
   try {
-    if(username.value.length !== 10){
+    if (username.value.length !== 10) {
       alert("手機號碼格式不正確")
       return;
     }

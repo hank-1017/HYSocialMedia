@@ -1,7 +1,7 @@
 CREATE DATABASE esunbankdb;
 use esunbankdb;
 
--- 創建 User 表
+-- CREATE User TABLE
 CREATE TABLE [User] (
     [User ID] INT IDENTITY(1,1) PRIMARY KEY,
     [User Name] NVARCHAR(255) NOT NULL,
@@ -11,7 +11,7 @@ CREATE TABLE [User] (
     [Biography] NVARCHAR(MAX)
 );
 
--- 創建 Post 表
+-- CREATE Post TABLE
 CREATE TABLE [Post] (
     [Post ID] INT IDENTITY(1,1) PRIMARY KEY,
     [User ID] INT NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE [Post] (
     CONSTRAINT [FK_Post_User] FOREIGN KEY ([User ID]) REFERENCES [User]([User ID])
 );
 
--- 創建 Comment 表
+-- CREATE Comment TABLE
 CREATE TABLE [Comment] (
     [Comment ID] INT IDENTITY(1,1) PRIMARY KEY,
     [User ID] INT NOT NULL,
