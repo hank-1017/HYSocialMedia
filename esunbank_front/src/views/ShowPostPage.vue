@@ -11,7 +11,7 @@
           </span>
         <span v-else>
           <button class="btn btn-outline-success btn-sm float-right" @click="editPost(post)">送出</button>
-          <button class="btn btn-outline-danger btn-sm float-right" @click="post.editOpen = false">取消</button>
+          <button class="btn btn-outline-danger btn-sm float-right" @click="post.editOpen = false&getPosts()">取消</button>
         </span>
       </div>
       <div class="card-body">
