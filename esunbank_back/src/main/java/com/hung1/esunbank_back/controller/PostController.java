@@ -57,6 +57,8 @@ public class PostController {
 
     @PutMapping("/post/edit")
     public String updatePost(@RequestBody Post post) {
+        System.out.println("---------------------------------------------------------------");
+        System.out.println("更新內容"+post.getContent());
         return mService.update(post);
     }
 

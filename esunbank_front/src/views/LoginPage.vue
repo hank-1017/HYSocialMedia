@@ -33,14 +33,13 @@ import {ref} from "vue";
 const username = ref('');
 const password = ref('');
 const URL = import.meta.env.VITE_API_JAVAURL;
+
 const submitForm = async () => {
   try {
     const formData = new FormData();
     formData.append('username', username.value);
     formData.append('password', password.value);
-
     const response = await axios.post(`${URL}user/login`, formData, {withCredentials: true});
-
     console.log("Login result: " + response.data);
 
     if (response.data === "Y") {

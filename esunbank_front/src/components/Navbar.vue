@@ -55,10 +55,8 @@
 <script setup>
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from "axios";
-import {useRouter} from 'vue-router';
 
 const URL = import.meta.env.VITE_API_JAVAURL;
-const router = useRouter();
 const logout = async () => {
   const response = await axios.get(`${URL}user/logout`, {withCredentials: true});
   if (response.data === "Y") {

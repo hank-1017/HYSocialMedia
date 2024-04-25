@@ -7,9 +7,10 @@
       <form @submit.prevent="submitForm" style="box-sizing: border-box;">
         <div class="input-group" style="width: 100%;">
           <label style="padding: 5px 0;">帳號(手機)：</label>
-          <input class="form-control" name="username" id="username" v-model="username"
+          <input class="form-control" name="username" id="username" v-model="username" @change="usernameChange"
                  style="flex: 0 1 70%; margin-left: 10px;"
                  required/>
+          <span style="color: red">{{ errMsg }}</span>
         </div>
 
         <br>
@@ -46,9 +47,15 @@ const username = ref('');
 const password = ref('');
 const email = ref('');
 const biography = ref('');
+const errMsg = ref('');
 const URL = import.meta.env.VITE_API_JAVAURL;
+
 const submitForm = async () => {
   try {
+    if(username.value.length !== 10){
+      alert("手機號碼格式不正確")
+      return;
+    }
     const formData = new FormData();
     formData.append('username', username.value);
     formData.append('password', password.value);
@@ -70,6 +77,15 @@ const submitForm = async () => {
     console.error('AJAX error:', error);
   }
 };
+
+// 檢查手機號碼格式
+const usernameChange = () => {
+  if (username.value.length !== 10) {
+    errMsg.value = "手機號碼格式不正確";
+  } else {
+    errMsg.value = "";
+  }
+}
 
 </script>
 

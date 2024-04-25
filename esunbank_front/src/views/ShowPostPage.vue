@@ -5,15 +5,20 @@
     <div class="card">
       <div class="card-header">
         發文者：{{ post.user.userName }} 時間：<span>{{ post.createdTime }}</span>
-        <span>
+        <span v-if="!post.editOpen">
         <button class="btn btn-outline-danger btn-sm float-right" @click="deletePost(post.postID)">刪除</button>
-        <button class="btn btn-outline-success btn-sm float-right" @click="editPost(post)">編輯</button>
+        <button class="btn btn-outline-success btn-sm float-right" @click="post.editOpen = true">編輯</button>
           </span>
+        <span v-else>
+          <button class="btn btn-outline-success btn-sm float-right" @click="editPost(post)">送出</button>
+          <button class="btn btn-outline-danger btn-sm float-right" @click="post.editOpen = false">取消</button>
+        </span>
       </div>
       <div class="card-body">
-        <textarea class="form-control" disabled>{{ post.content }}</textarea>
+        <textarea v-if="!post.editOpen" class="form-control" disabled>{{ post.content }}</textarea>
+        <textarea v-else class="form-control" v-model="post.content">{{ post.content }}</textarea>
         <br>
-        <span v-for=" comment in post.comment">
+        <span v-for="comment in post.comment">
           <span>{{ comment.user.userName }}: {{ comment.content }}</span>
           <span class=" float-right">{{
               format(new Date(comment.createdTime), "a hh 時 mm 分 ss 秒 ## yyyy 年 MM 月 dd 日 EEEE", {locale: zhTW})
@@ -50,6 +55,7 @@ onMounted(() => {
   getPosts();
 });
 
+// 取得全部文章
 const getPosts = async () => {
   try {
     const response = await axios.get(`${URL}post/show`, {withCredentials: true});
@@ -58,18 +64,22 @@ const getPosts = async () => {
       ...post,
       createdTime: format(new Date(post.createdTime), "a hh 時 mm 分 ss 秒 ## yyyy 年 MM 月 dd 日 EEEE", {locale: zhTW}),
       commentOpen: false,
+      editOpen: false,
     })).reverse();
   } catch (error) {
     console.error('AJAX error:', error);
   }
 }
 
+// 更新文章
 const editPost = async (post) => {
   try {
-    const response = await axios.post(`${URL}post/edit`, {withCredentials: true});
+    post.createdTime = Date.parse(post.createdTime);
+    const response = await axios.put(`${URL}post/edit`, post, {withCredentials: true});
     console.log("edit post: " + response.data);
     if (response.data === "Y") {
       alert("文章已更新!!")
+      post.editOpen = false;
       await getPosts();
     } else {
       alert("系統錯誤")
@@ -80,6 +90,7 @@ const editPost = async (post) => {
   }
 }
 
+// 刪除文章
 const deletePost = async (id) => {
   try {
     const response = await axios.delete(`${URL}post/delete/${id}`, {withCredentials: true});
@@ -93,6 +104,7 @@ const deletePost = async (id) => {
   }
 }
 
+// 留言
 const sendComment = async (postID) => {
   try {
     const formData = new FormData();
@@ -101,7 +113,7 @@ const sendComment = async (postID) => {
     const response = await axios.post(`${URL}comment/add`, formData, {withCredentials: true});
     console.log("send comment: " + response.data);
     if (response.data === "Y") {
-      alert("留言已送出!!")
+      comment.value = '';
       await getPosts();
     } else {
       alert("請先登入")

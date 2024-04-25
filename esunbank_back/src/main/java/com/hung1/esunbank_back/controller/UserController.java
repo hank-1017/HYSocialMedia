@@ -21,7 +21,8 @@ public class UserController {
     public String postRegister(@RequestParam("username") String username,
                                @RequestParam("email") String email,
                                @RequestParam("password") String password,
-                               @RequestParam("biography") String biography) {
+                               @RequestParam("biography") String biography,
+                               HttpSession httpsession) {
         boolean isExist = userService.checkIfUsernameExist(username);
 
         if (isExist) {
@@ -36,6 +37,10 @@ public class UserController {
 
             userService.addUser(u1);
             System.out.println("註冊成功");
+
+            User result = userService.checkLogin(username, password);
+            httpsession.setAttribute("loginUser", result);
+
             return "Y";
         }
     }
