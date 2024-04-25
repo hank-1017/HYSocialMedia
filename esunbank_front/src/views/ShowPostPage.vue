@@ -4,15 +4,17 @@
   <div v-for="post in posts">
     <div class="card">
       <div class="card-header">
-        發文者：{{ post.user.userName }} 時間：<span>{{ post.createdTime }}</span>
+        發文者：{{ post.user.userName }}
         <span v-if="!post.editOpen">
         <button class="btn btn-outline-danger btn-sm float-right" @click="deletePost(post.postID)">刪除</button>
         <button class="btn btn-outline-success btn-sm float-right" @click="post.editOpen = true">編輯</button>
           </span>
         <span v-else>
           <button class="btn btn-outline-success btn-sm float-right" @click="editPost(post)">送出</button>
-          <button class="btn btn-outline-danger btn-sm float-right" @click="post.editOpen = false&getPosts()">取消</button>
+          <button class="btn btn-outline-danger btn-sm float-right"
+                  @click="post.editOpen = false&getPosts()">取消</button>
         </span>
+        <span class="float-right">時間：{{ post.createdTime }} #</span>
       </div>
       <div class="card-body">
         <textarea v-if="!post.editOpen" class="form-control" disabled>{{ post.content }}</textarea>
