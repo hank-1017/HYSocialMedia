@@ -7,9 +7,6 @@ import ShowPostPage from "./views/ShowPostPage.vue";
 import Navbar from '../src/components/Navbar.vue';
 
 
-
-
-
 const routes = [
 
     {

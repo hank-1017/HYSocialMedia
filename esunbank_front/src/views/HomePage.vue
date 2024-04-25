@@ -7,7 +7,7 @@
       <h2>請先登入</h2>
     </div>
     <div class="card-body" v-else>
-      <p>用戶名稱：{{ username }}</p>
+      <p>用戶帳號：{{ username }}</p>
       <p>用戶Email：{{ email }}</p>
       <p>用戶自我介紹：{{ biography }}</p>
     </div>

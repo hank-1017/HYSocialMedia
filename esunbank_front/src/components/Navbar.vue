@@ -1,14 +1,10 @@
-<template>
+<template xmlns="">
 
   <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
       <router-link to="/">
-        <a class="navbar-brand">Simple-Project</a>
+        <a class="navbar-brand">Simple-Social-Network</a>
       </router-link>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
 
@@ -42,7 +38,9 @@
             </router-link>
           </li>
 
-          <a class="nav-link" @click="logout" href="">登出</a>
+          <li class="nav-item">
+            <a class="nav-link" @click="logout" href="">登出</a>
+          </li>
 
         </ul>
       </div>
@@ -50,7 +48,7 @@
   </nav>
 
   <div class="container">
-  <router-view/>
+    <router-view/>
   </div>
 </template>
 
@@ -58,6 +56,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from "axios";
 import {useRouter} from 'vue-router';
+
 const URL = import.meta.env.VITE_API_JAVAURL;
 const router = useRouter();
 const logout = async () => {

@@ -7,7 +7,7 @@
         發文者：{{ post.user.userName }} 時間：<span>{{ post.createdTime }}</span>
         <span>
         <button class="btn btn-outline-danger btn-sm float-right" @click="deletePost(post.postID)">刪除</button>
-        <button class="btn btn-outline-success btn-sm float-right" @click="editPost(post)">編輯</button>          |
+        <button class="btn btn-outline-success btn-sm float-right" @click="editPost(post)">編輯</button>
           </span>
       </div>
       <div class="card-body">
