@@ -52,7 +52,9 @@ const URL = import.meta.env.VITE_API_JAVAURL;
 
 const submitForm = async () => {
   try {
-    if (username.value.length !== 10) {
+    const isNumeric = /^\d+$/.test(username.value);
+    const startsWith09 = /^09/.test(username.value);
+    if (username.value.length !== 10 || !isNumeric || !startsWith09) {
       alert("手機號碼格式不正確")
       return;
     }
@@ -80,7 +82,9 @@ const submitForm = async () => {
 
 // 檢查手機號碼格式
 const usernameChange = () => {
-  if (username.value.length !== 10) {
+  const isNumeric = /^\d+$/.test(username.value);
+  const startsWith09 = /^09/.test(username.value);
+  if (username.value.length !== 10 || !isNumeric || !startsWith09) {
     errMsg.value = "手機號碼格式不正確";
   } else {
     errMsg.value = "";

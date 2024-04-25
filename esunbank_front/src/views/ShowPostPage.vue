@@ -83,8 +83,18 @@ const editPost = async (post) => {
       alert("文章已更新!!")
       post.editOpen = false;
       await getPosts();
+    } else if (response.data === "NotLogin") {
+      alert("請先登入")
+      post.editOpen = false;
+      await router.push('/login');
+    } else if (response.data === "NotOwner") {
+      alert("非文章擁有者")
+      post.editOpen = false;
+      await getPosts();
     } else {
       alert("系統錯誤")
+      post.editOpen = false;
+      await getPosts();
     }
 
   } catch (error) {

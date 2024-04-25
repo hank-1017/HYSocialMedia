@@ -56,8 +56,8 @@ public class PostController {
 
 
     @PutMapping("/post/edit")
-    public String updatePost(@RequestBody Post post) {
-        return mService.update(post);
+    public String updatePost(@RequestBody Post post, HttpSession httpsession) {
+        return mService.update(post, httpsession);
     }
 
 

@@ -24,23 +24,14 @@ public class UserController {
                                @RequestParam("biography") String biography,
                                HttpSession httpsession) {
         boolean isExist = userService.checkIfUsernameExist(username);
-
         if (isExist) {
             System.out.println("此帳號已存在");
             return "N";
         } else {
-            User u1 = new User();
-            u1.setUserName(username);
-            u1.setEmail(email);
-            u1.setPwd(password);
-            u1.setBiography(biography);
-
-            userService.addUser(u1);
+            userService.addUser(username, password, email, biography);
             System.out.println("註冊成功");
-
             User result = userService.checkLogin(username, password);
             httpsession.setAttribute("loginUser", result);
-
             return "Y";
         }
     }
