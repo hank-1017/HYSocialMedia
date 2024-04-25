@@ -1,3 +1,6 @@
+CREATE DATABASE esunbankdb;
+use esunbankdb;
+
 -- ³Ð«Ø User ªí
 CREATE TABLE [User] (
     [User ID] INT IDENTITY(1,1) PRIMARY KEY,
