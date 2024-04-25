@@ -1,12 +1,11 @@
 package com.hung1.esunbank_back.service;
 
 import com.hung1.esunbank_back.model.User;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import com.hung1.esunbank_back.model.UserRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserService {

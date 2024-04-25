@@ -6,9 +6,9 @@ import java.util.Optional;
 import com.hung1.esunbank_back.model.Post;
 import com.hung1.esunbank_back.model.User;
 import com.hung1.esunbank_back.model.PostRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class PostService {
