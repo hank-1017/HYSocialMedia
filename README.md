@@ -1,6 +1,3 @@
-以下是根據您的專案生成的 `README.md` 文件範本：
-
-```markdown
 # HYSocialMedia
 
 HYSocialMedia is a social media application built with Spring Boot and Maven. It provides functionalities for user registration, login, posting messages, and more.
@@ -93,11 +90,4 @@ The CORS settings are configured in `src/main/java/com/hung1/HYSocialMedia/confi
 corsConfiguration.addAllowedOrigin("https://hy-social-media.vercel.app");
 ```
 
-Update the allowed origins as needed.
 
-## License
-
-This project is licensed under the MIT License.
-```
-
-將此內容保存為 `README.md` 文件，並根據需要進行修改。
