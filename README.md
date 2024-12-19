@@ -6,6 +6,7 @@ HYSocialMedia is a social media application built with Spring Boot and Maven. It
 
 - Java 17
 - Maven 3.6+
+- Node.js (version 18 or later)
 - Docker (optional, for containerization)
 
 ## Getting Started
