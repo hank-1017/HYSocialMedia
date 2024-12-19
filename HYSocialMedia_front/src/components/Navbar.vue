@@ -4,7 +4,7 @@
     <div class="container-fluid">
 
       <router-link to="/">
-        <a class="navbar-brand">Simple-Social-Network</a>
+        <a class="navbar-brand">HY Social Media</a>
       </router-link>
 
       <div class="collapse navbar-collapse" id="navbarNav">
