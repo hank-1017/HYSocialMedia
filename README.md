@@ -70,24 +70,5 @@ docker rm hysocialmedia_back_container
 - `GET /post/edit` - Get a post by ID for editing
 - `PUT /post/edit` - Update a post
 
-## Configuration
-
-### Database Configuration
-
-The application uses SQL Server as the database. Update the `src/main/resources/application.properties` file with your database credentials.
-
-```ini
-spring.datasource.url=jdbc:sqlserver://<your-database-url>;databaseName=HYSocialMediaDB;encrypt=true;trustServerCertificate=true
-spring.datasource.username=<your-username>
-spring.datasource.password=<your-password>
-```
-
-### CORS Configuration
-
-The CORS settings are configured in `src/main/java/com/hung1/HYSocialMedia/config/GlobalCorsConfig.java`.
-
-```java
-corsConfiguration.addAllowedOrigin("https://hy-social-media.vercel.app");
-```
 
 
