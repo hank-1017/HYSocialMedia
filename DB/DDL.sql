@@ -1,6 +1,7 @@
 CREATE DATABASE HYSocialMediaDB;
+GO
 use HYSocialMediaDB;
-
+GO
 -- CREATE User TABLE
 CREATE TABLE [User] (
     [User ID] INT IDENTITY(1,1) PRIMARY KEY,
@@ -10,7 +11,7 @@ CREATE TABLE [User] (
     [Cover Image] NVARCHAR(255),
     [Biography] NVARCHAR(MAX)
 );
-
+GO
 -- CREATE Post TABLE
 CREATE TABLE [Post] (
     [Post ID] INT IDENTITY(1,1) PRIMARY KEY,
@@ -20,7 +21,7 @@ CREATE TABLE [Post] (
     [Created At] DATETIME NOT NULL,
     CONSTRAINT [FK_Post_User] FOREIGN KEY ([User ID]) REFERENCES [User]([User ID])
 );
-
+GO
 -- CREATE Comment TABLE
 CREATE TABLE [Comment] (
     [Comment ID] INT IDENTITY(1,1) PRIMARY KEY,

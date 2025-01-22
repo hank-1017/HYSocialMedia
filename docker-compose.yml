@@ -1,0 +1,41 @@
+services:
+  app-db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: app-db
+    platform: linux/amd64
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Passw0rd!
+      - MSSQL_DATABASE=HYSocialMediaDB
+    ports:
+      - "1433:1433"
+    volumes:
+      - ./DB/DDL.sql:/docker-entrypoint-initdb.d/init.sql
+
+  app-server:
+    image: hysocialmediaback:1.0.0
+    container_name: app-server
+    build:
+      context: ./HYSocialMedia_back
+      dockerfile: ./HYSocialMedia_back/Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:sqlserver://app-db:1433;databaseName=HYSocialMediaDB;encrypt=true;trustServerCertificate=true
+      - SPRING_DATASOURCE_USERNAME=sa
+      - SPRING_DATASOURCE_PASSWORD=Passw0rd!
+    depends_on:
+      - app-db
+
+  app-frontend:
+    image: hysocialmediafront:1.0.0
+    container_name: app-frontend
+    build:
+      context: ./HYSocialMedia_front
+      dockerfile: ./HYSocialMedia_front/Dockerfile
+    ports:
+      - "5173:80"
+    environment:
+      - VUE_APP_API_BASE_URL=http://app-server:8080
+    depends_on:
+      - app-server
