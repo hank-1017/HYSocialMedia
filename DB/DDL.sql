@@ -1,5 +1,5 @@
-CREATE DATABASE esunbankdb;
-use esunbankdb;
+CREATE DATABASE HYSocialMediaDB;
+use HYSocialMediaDB;
 
 -- CREATE User TABLE
 CREATE TABLE [User] (
